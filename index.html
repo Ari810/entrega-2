@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Recitales</title>
+</head>
+<body>
+    <h1>Agenda de Recitales</h1>
+    <form id="formularioRecitales">
+        <div>
+            <label for="artista">Artista/Banda: </label>
+            <input type="text" id="artista" required>
+        </div>
+        <div>
+            <label for="precio">Precio: </label>
+            <input type="number" id="precio" required>
+        </div>
+        <div>
+            <label for="sector">Seleccione un sector:</label>
+            <select name="Sector" id="sector">
+                <option value="Campo">Campo</option>
+                <option value="Platea">Platea</option>
+            </select>
+        </div>
+        <div>
+            <label for="fecha">Ingrese la fecha: </label>
+            <input type="date" id="fecha">
+        </div>
+        <button type="submit">Agregar a la agenda</button>
+        <button type="reset">Limpiar agenda</button>
+    </form>
+    <ul id="listaRecitales"></ul>
+    <script src="app.js"></script>
+</body>
+</html>
