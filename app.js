@@ -1,11 +1,24 @@
 let recitales = JSON.parse(localStorage.getItem("recitales")) || [];
-let idRecital = 1;
+
+class Recital {
+    static ultimoId = 0;
+
+    constructor(artista, precio, sector, fecha) {
+        Recital.ultimoId += 1;
+        this.id = Recital.ultimoId;
+        this.artista = artista;
+        this.precio = precio;
+        this.sector = sector;
+        this.fecha = fecha;
+    }
+}
 
 const form = document.getElementById("formularioRecitales");
 const lista = document.getElementById("listaRecitales");
 
 const borrarReci = (id) => {
     recitales = recitales.filter((recital) => recital.id !== id);
+    guardadoLocal();
     renderizar();
 };
 
@@ -22,9 +35,13 @@ const renderizar = () => {
 
         borrar.addEventListener("click", () => borrarReci(recital.id));
 
+        ilReci.appendChild(borrar);
         lista.appendChild(ilReci);
-        lista.appendChild(borrar);
     });
+};
+
+const guardadoLocal = () => {
+    localStorage.setItem("recitales", JSON.stringify(recitales));
 };
 
 form.addEventListener("submit", (event) => {
@@ -35,16 +52,12 @@ form.addEventListener("submit", (event) => {
     const sector = document.getElementById("sector").value;
     const fecha = document.getElementById("fecha").value;
 
-    const recital = {
-        id: idRecital++,
-        artista: artista,
-        precio: precio,
-        sector: sector,
-        fecha: fecha,
-    };
+    const recital = new Recital(artista, precio, sector, fecha);
 
     recitales.push(recital);
 
+    guardadoLocal();
     renderizar();
     form.reset();
 });
+renderizar();
