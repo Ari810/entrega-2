@@ -61,3 +61,9 @@ form.addEventListener("submit", (event) => {
     form.reset();
 });
 renderizar();
+
+const botonBorrar = document.getElementById("botonBorrar");
+botonBorrar.addEventListener("click", () => {
+    localStorage.clear();
+    lista.innerHTML = "";
+});
