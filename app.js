@@ -13,6 +13,12 @@ class Recital {
     }
 }
 
+recitales.forEach((recital) => {
+    if (recital.id > Recital.ultimoId) {
+        Recital.ultimoId = recital.id;
+    }
+});
+
 const form = document.getElementById("formularioRecitales");
 const lista = document.getElementById("listaRecitales");
 
@@ -65,5 +71,6 @@ renderizar();
 const botonBorrar = document.getElementById("botonBorrar");
 botonBorrar.addEventListener("click", () => {
     localStorage.clear();
-    lista.innerHTML = "";
+    recitales = [];
+    renderizar();
 });
